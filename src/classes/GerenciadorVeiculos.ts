@@ -1,17 +1,17 @@
 import { Veiculo } from './../interface/Veiculo';
 
-export class GerenciadorVeiculos<T> {
+export class GerenciadorVeiculos<T extends Veiculo> {
 
     private veiculos: T[] = [];
     adicionar(veiculo: T): void {
         this.veiculos.push(veiculo);
     }
 
-    listaVeiculos(veiculos:T[]):T[]{
-        return veiculos;
+    listarVeiculos(): T[] {
+        return this.veiculos;
     }
 
-    removerVeiculo(veiculo: T, indice: number): void {
-        this.veiculos.splice(indice);
+    removerVeiculo(modelo: string): void {
+        this.veiculos = this.veiculos.filter(v => v.modelo !== modelo);
     }
 }
